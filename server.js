@@ -24,6 +24,7 @@ const allowedOrigins = [
   "https://atmamanthan-journey-webapp.vercel.app",
   "http://localhost:3000",
   "http://localhost:3001",
+  "https://d1igx7lccgvz7g.cloudfront.net",
   // Add other origins as needed
 ];
 
