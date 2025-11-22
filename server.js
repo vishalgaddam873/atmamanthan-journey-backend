@@ -24,6 +24,7 @@ const allowedOrigins = [
   "https://atmamanthan-journey-webapp.vercel.app",
   "http://localhost:3000",
   "http://localhost:3001",
+  "https://d1igx7lccgvz7g.cloudfront.net",
   // Add other origins as needed
 ];
 
@@ -63,26 +64,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware to add CORS headers to static files
-app.use("/assets", (req, res, next) => {
-  const origin = req.headers.origin;
-  if (origin && allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  } else {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-  }
-  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
-
-// Serve static files
-app.use("/assets", express.static(path.join(__dirname, "./assets")));
+// REMOVED: Static file serving - assets now served from CloudFront CDN
+// Assets are accessed directly from: https://d1igx7lccgvz7g.cloudfront.net
 
 // API Routes
 app.use("/api/session", sessionRoutes);
