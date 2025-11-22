@@ -16,6 +16,14 @@ primary_region = 'bom'
   min_machines_running = 1
   processes = ['app']
 
+[checks]
+  [checks.health]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    timeout = "5s"
+    path = "/health"
+
 [[vm]]
   memory = '2gb'
   cpu_kind = 'shared'
